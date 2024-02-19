@@ -6,33 +6,28 @@
 
 ## 👋 Introduction
 
-I was tired of having to keep multiple tabs open in the browser to perform occasional operations with Markdown files, so I decided to develop this application to confine the best web services in a simple user interface, and without depending on the system web browser.
+I was tired of having to keep multiple tabs open in the web browser to perform occasional operations with Markdown files, so I decided to develop this application to confine the best web services in a simple user interface, and without depending on the system web browser.
 
 ![screenshot](/images/screenshot.png)
 
 The web services to which this desktop application provides direct access are:
 
- - [StackEdit.io](https://stackedit.io/app#)
-   The best online markdown editor out there.
+ - [StackEdit.io](https://stackedit.io/app#): The best online markdown editor out there.
 
- - [Markdown to HTML Converter](https://markdowntohtml.com/#converter)
-   Quickly and easily converts Markdown to HTML.
+ - [Markdown to HTML Converter](https://markdowntohtml.com/#converter): Quickly and easily converts Markdown to HTML.
 
- - [HTML to Markdown Converter](https://www.browserling.com/tools/html-to-markdown)
-   Efficiently converts HTML to Markdown.
+ - [HTML to Markdown Converter](https://www.browserling.com/tools/html-to-markdown): Efficiently converts HTML to Markdown.
 
- - [Markdown Table Converter](https://markdown-convert.com/en/tool/table)
-   Facilitates the conversion of tables from various formats to Markdown.
+ - [Markdown Table Converter](https://markdown-convert.com/en/tool/table): Facilitates the conversion of tables from various formats to Markdown.
 
- - [Markdown Guide](https://www.markdownguide.org/basic-syntax/)
-   A comprehensive guide to Markdown syntax.
+ - [Markdown Guide](https://www.markdownguide.org/basic-syntax/): A comprehensive guide to Markdown syntax.
 
- - [ChatGPT](https://chat.openai.com/) 
-   Because why not?, ChatGPT can help you improve your Markdown document, give you ideas, etc.
+ - [ChatGPT](https://chat.openai.com/): Because why not?, ChatGPT can help you improve your Markdown document, give you ideas, etc.
 
 ## 📝 Requirements
 
 - Microsoft Windows OS.
+- [.NET Desktop Runtime 6.0.x](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 - A network connection (for accessing the online services).
 
 ## 🏆 Credits
