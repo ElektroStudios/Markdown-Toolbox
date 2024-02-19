@@ -77,6 +77,25 @@ Partial Friend NotInheritable Class MainForm : Inherits Form
     End Sub
 
     ''' <summary>
+    ''' Handles the <see cref="ToolStripMenuItem.Click"/> event 
+    ''' of the <see cref="MainForm.ExitAplicationToolStripMenuItem"/> control.
+    ''' </summary>
+    ''' 
+    ''' <param name="sender">
+    ''' The source of the event.
+    ''' </param>
+    ''' 
+    ''' <param name="e">
+    ''' The <see cref="EventArgs"/> instance containing the event data.
+    ''' </param>
+    <DebuggerStepperBoundary>
+    Private Sub ExitAplicationToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+    Handles ExitAplicationToolStripMenuItem.Click
+
+        Me.Close()
+    End Sub
+
+    ''' <summary>
     ''' Handles the <see cref="ToolStripMenuItem.CheckedChanged"/> event 
     ''' of the <see cref="MainForm.EnableSpellCheckToolStripMenuItem"/> control.
     ''' </summary>

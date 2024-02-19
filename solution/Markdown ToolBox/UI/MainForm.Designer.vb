@@ -105,7 +105,7 @@ Partial Class MainForm
         Me.EnableSpellCheckToolStripMenuItem.CheckState = CheckState.Checked
         Me.EnableSpellCheckToolStripMenuItem.Image = My.Resources.Resources.SpellCheck
         Me.EnableSpellCheckToolStripMenuItem.Name = "EnableSpellCheckToolStripMenuItem"
-        Me.EnableSpellCheckToolStripMenuItem.Size = New Size(180, 22)
+        Me.EnableSpellCheckToolStripMenuItem.Size = New Size(173, 22)
         Me.EnableSpellCheckToolStripMenuItem.Text = "Enable Spell Check"
         Me.EnableSpellCheckToolStripMenuItem.ToolTipText = "Enable Spell Check"
         ' 

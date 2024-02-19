@@ -30,6 +30,10 @@ The web services to which this desktop application provides direct access are:
 - [.NET Desktop Runtime 6.0.x](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 - A network connection (for accessing the online services).
 
+## 🔄 Version History
+
+- [Markdown ToolBox Version History](/Version%20History.md)
+
 ## 🏆 Credits
 
 This work relies on the following technologies and libraries: 
