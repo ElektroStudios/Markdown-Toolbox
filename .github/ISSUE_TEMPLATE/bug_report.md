@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Create a bug report to help us improve
-title: "[BUG] Title the bug here"
+title: "[BUG] Write the title here"
 labels: ''
 assignees: ElektroStudios
 
@@ -27,8 +27,8 @@ A clear and concise description of the actual behavior that you observed.
 If applicable, add screenshots to help explain your problem.
 
 **Environment (please complete the following information If applicable):**
- - OS: [e.g. Microsoft Windows 10 22H2]
- - Program Version [e.g. v1.0 x64]
+ - OS: [e.g. Microsoft Windows 10 22H2 x64]
+ - Program Version: [e.g. v1.0 x64]
 
 **Additional context**
 Add any other context about the problem here.

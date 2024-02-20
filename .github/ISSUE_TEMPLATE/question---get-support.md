@@ -1,7 +1,7 @@
 ---
-name: Question
-about: Describe this issue template's purpose here.
-title: "[QUESTION] Title the question here"
+name: Question / Get Support
+about: Ask any question you have in mind related to this repository
+title: "[QUESTION] Write the title here"
 labels: ''
 assignees: ElektroStudios
 
