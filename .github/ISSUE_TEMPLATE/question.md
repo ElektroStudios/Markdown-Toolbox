@@ -1,7 +1,7 @@
 ---
-name: Custom issue template
+name: Question
 about: Describe this issue template's purpose here.
-title: "[QUESTION]"
+title: "[QUESTION] Title the question here"
 labels: ''
 assignees: ElektroStudios
 
