@@ -17,9 +17,9 @@
     <Authors>ElektroStudios</Authors>
     <Title>Markdown Toolbox</Title>
     <Description>Multiple Markdown web services confined in a single desktop application.</Description>
-    <Copyright>Copyright © 2024 ElektroStudios</Copyright>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
+    <Copyright>Copyright © ElektroStudios 2024</Copyright>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <FileVersion>1.2.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

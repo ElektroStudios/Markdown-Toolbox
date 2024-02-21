@@ -219,8 +219,8 @@ Partial Friend NotInheritable Class MainForm : Inherits Form
         Me.ChromiumWebBrowser_GitHubMdSyntax.LoadUrlAsync(Urls.UrlGitHubMdSyntax)
 
         ' ChatGPT
-        Me.ChromiumWebBrowser_ChatGPT.RequestHandler =
-            New RequestHandlerRestrictedToHostName(Urls.UrlChatGPT)
+        'Me.ChromiumWebBrowser_ChatGPT.RequestHandler =
+        '    New RequestHandlerRestrictedToHostName(Urls.UrlChatGPT)
         Me.ChromiumWebBrowser_ChatGPT.LoadUrlAsync(Urls.UrlChatGPT)
 
 #Enable Warning BC42358 ' Because this call is not awaited, execution of the current method continues before the call is completed
