@@ -67,7 +67,7 @@ This work is distributed for educational purposes and without any profit motive.
  - ### Paypal:
     You can donate any amount you like via **Paypal** by clicking on this button:
 
-    [![Donation Account](Images/Paypal_Donate.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E4RQEV6YF5NZY)
+    [![Donation Account](images/Paypal_Donate.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E4RQEV6YF5NZY)
 
  - ### Envato Market:
    If you are a .NET developer, you may want to explore '**DevCase Class Library for .NET**', a huge set of APIs that I have on sale.
@@ -75,6 +75,6 @@ This work is distributed for educational purposes and without any profit motive.
 
     Check out the product:
     
-   [![DevCase Class Library for .NET](Images/DevCase_Banner.png)](https://codecanyon.net/item/elektrokit-class-library-for-net/19260282)
+   [![DevCase Class Library for .NET](images/DevCase_Banner.png)](https://codecanyon.net/item/elektrokit-class-library-for-net/19260282)
 
 <u>**Your support means the world to me! Thank you for considering it!**</u> 👍
