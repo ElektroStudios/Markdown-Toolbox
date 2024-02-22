@@ -1,12 +1,12 @@
 # Markdown ToolBox
 
-### Multiple Markdown web services confined in a single desktop application.
+### Multiple Markdown web services hosted in a single desktop application.
 
 ------------------
 
 ## 👋 Introduction
 
-I was tired of having to keep multiple tabs open in the web browser to perform occasional operations with Markdown files, so I decided to develop this application to confine the best web services in a simple user interface, and without depending on the system web browser.
+I was tired of having to keep multiple tabs open in the web browser to perform occasional operations with Markdown files, so I decided to develop this application to host the best web services in a simple user interface, and without depending on the system web browser.
 
 The web services to which this desktop application provides direct access are:
 
