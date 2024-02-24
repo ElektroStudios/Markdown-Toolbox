@@ -25,10 +25,12 @@ Partial Class MainForm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
         Me.ToolStrip1 = New ToolStrip()
         Me.ToolStripDropDownButton_File = New ToolStripDropDownButton()
+        Me.ReloadCurrentWebpageToolStripMenuItem = New ToolStripMenuItem()
         Me.ExitAplicationToolStripMenuItem = New ToolStripMenuItem()
         Me.ToolStripSeparator1 = New ToolStripSeparator()
         Me.ToolStripDropDownButton_Settings = New ToolStripDropDownButton()
         Me.EnableSpellCheckToolStripMenuItem = New ToolStripMenuItem()
+        Me.EnableDarkModeToolStripMenuItem = New ToolStripMenuItem()
         Me.ToolStripSeparator2 = New ToolStripSeparator()
         Me.ToolStripButton_About = New ToolStripButton()
         Me.TabControl1 = New TabControl()
@@ -69,12 +71,21 @@ Partial Class MainForm
         ' 
         ' ToolStripDropDownButton_File
         ' 
-        Me.ToolStripDropDownButton_File.DropDownItems.AddRange(New ToolStripItem() {Me.ExitAplicationToolStripMenuItem})
+        Me.ToolStripDropDownButton_File.DropDownItems.AddRange(New ToolStripItem() {Me.ReloadCurrentWebpageToolStripMenuItem, Me.ExitAplicationToolStripMenuItem})
         Me.ToolStripDropDownButton_File.Image = My.Resources.Resources.Document
         Me.ToolStripDropDownButton_File.ImageTransparentColor = Color.Magenta
         Me.ToolStripDropDownButton_File.Name = "ToolStripDropDownButton_File"
         Me.ToolStripDropDownButton_File.Size = New Size(54, 22)
         Me.ToolStripDropDownButton_File.Text = "File"
+        Me.ToolStripDropDownButton_File.ToolTipText = " "
+        ' 
+        ' ReloadCurrentWebpageToolStripMenuItem
+        ' 
+        Me.ReloadCurrentWebpageToolStripMenuItem.Image = My.Resources.Resources.Refresh
+        Me.ReloadCurrentWebpageToolStripMenuItem.Name = "ReloadCurrentWebpageToolStripMenuItem"
+        Me.ReloadCurrentWebpageToolStripMenuItem.Size = New Size(180, 22)
+        Me.ReloadCurrentWebpageToolStripMenuItem.Text = "Reload current page"
+        Me.ReloadCurrentWebpageToolStripMenuItem.ToolTipText = "Reloads the current webpage"
         ' 
         ' ExitAplicationToolStripMenuItem
         ' 
@@ -91,7 +102,7 @@ Partial Class MainForm
         ' 
         ' ToolStripDropDownButton_Settings
         ' 
-        Me.ToolStripDropDownButton_Settings.DropDownItems.AddRange(New ToolStripItem() {Me.EnableSpellCheckToolStripMenuItem})
+        Me.ToolStripDropDownButton_Settings.DropDownItems.AddRange(New ToolStripItem() {Me.EnableSpellCheckToolStripMenuItem, Me.EnableDarkModeToolStripMenuItem})
         Me.ToolStripDropDownButton_Settings.Image = My.Resources.Resources.Settings
         Me.ToolStripDropDownButton_Settings.ImageTransparentColor = Color.Magenta
         Me.ToolStripDropDownButton_Settings.Name = "ToolStripDropDownButton_Settings"
@@ -105,9 +116,18 @@ Partial Class MainForm
         Me.EnableSpellCheckToolStripMenuItem.CheckState = CheckState.Checked
         Me.EnableSpellCheckToolStripMenuItem.Image = My.Resources.Resources.SpellCheck
         Me.EnableSpellCheckToolStripMenuItem.Name = "EnableSpellCheckToolStripMenuItem"
-        Me.EnableSpellCheckToolStripMenuItem.Size = New Size(173, 22)
+        Me.EnableSpellCheckToolStripMenuItem.Size = New Size(180, 22)
         Me.EnableSpellCheckToolStripMenuItem.Text = "Enable Spell Check"
         Me.EnableSpellCheckToolStripMenuItem.ToolTipText = "Enable Spell Check"
+        ' 
+        ' EnableDarkModeToolStripMenuItem
+        ' 
+        Me.EnableDarkModeToolStripMenuItem.CheckOnClick = True
+        Me.EnableDarkModeToolStripMenuItem.Image = My.Resources.Resources.DarkTheme
+        Me.EnableDarkModeToolStripMenuItem.Name = "EnableDarkModeToolStripMenuItem"
+        Me.EnableDarkModeToolStripMenuItem.Size = New Size(180, 22)
+        Me.EnableDarkModeToolStripMenuItem.Text = "Enable Dark Mode"
+        Me.EnableDarkModeToolStripMenuItem.ToolTipText = "Enables dark mode" & vbCrLf & vbCrLf & "( you must realod the webpage to take effect )"
         ' 
         ' ToolStripSeparator2
         ' 
@@ -330,5 +350,7 @@ Partial Class MainForm
     Friend WithEvents TabPage_ChatGPT As TabPage
     Friend WithEvents ChromiumWebBrowser_ChatGPT As CefSharp.WinForms.ChromiumWebBrowser
     Friend WithEvents ExitAplicationToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ReloadCurrentWebpageToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EnableDarkModeToolStripMenuItem As ToolStripMenuItem
 
 End Class

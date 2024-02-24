@@ -107,6 +107,7 @@ Friend Module JotUtil
     <DebuggerStepThrough>
     Friend Sub StartTrackingMenuItems()
         JotUtil.menuItemTrackingConfig.Track(My.Forms.MainForm.EnableSpellCheckToolStripMenuItem)
+        JotUtil.menuItemTrackingConfig.Track(My.Forms.MainForm.EnableDarkModeToolStripMenuItem)
     End Sub
 
 #End Region

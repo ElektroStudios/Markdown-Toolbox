@@ -83,6 +83,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property DarkTheme() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("DarkTheme", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property Document() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Document", resourceCulture)
@@ -106,6 +116,16 @@ Namespace My.Resources
         Friend ReadOnly Property InfoTipInline_11_11() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("InfoTipInline.11.11", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Refresh() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Refresh", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

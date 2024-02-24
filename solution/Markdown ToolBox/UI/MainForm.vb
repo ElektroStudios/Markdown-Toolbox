@@ -8,6 +8,9 @@ Option Infer Off
 
 #Region " Imports "
 
+Imports System.Text
+
+Imports CefSharp
 Imports CefSharp.WinForms
 
 #End Region
@@ -18,6 +21,15 @@ Imports CefSharp.WinForms
 ''' The main form of the application.
 ''' </summary>
 Partial Friend NotInheritable Class MainForm : Inherits Form
+
+#Region " Private Fielda "
+
+    ''' <summary>
+    ''' Flag to determine whether the browsers should enable dark mode.
+    ''' </summary>
+    Private enableDarkMode As Boolean
+
+#End Region
 
 #Region " Event Handlers "
 
@@ -78,6 +90,30 @@ Partial Friend NotInheritable Class MainForm : Inherits Form
 
     ''' <summary>
     ''' Handles the <see cref="ToolStripMenuItem.Click"/> event 
+    ''' of the <see cref="MainForm.ReloadCurrentWebpageToolStripMenuItem"/> control.
+    ''' </summary>
+    ''' 
+    ''' <param name="sender">
+    ''' The source of the event.
+    ''' </param>
+    ''' 
+    ''' <param name="e">
+    ''' The <see cref="EventArgs"/> instance containing the event data.
+    ''' </param>
+    <DebuggerStepperBoundary>
+    Private Sub ReloadCurrentWebpageToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+    Handles ReloadCurrentWebpageToolStripMenuItem.Click
+
+        Dim tabcontrol As TabControl = Me.TabControl1
+        Dim currentTabPage As TabPage = tabcontrol.SelectedTab
+        Dim browser As ChromiumWebBrowser = currentTabPage.Controls.OfType(Of ChromiumWebBrowser).Single()
+
+        browser.Tag = Nothing
+        browser.Load(browser.Address)
+    End Sub
+
+    ''' <summary>
+    ''' Handles the <see cref="ToolStripMenuItem.Click"/> event 
     ''' of the <see cref="MainForm.ExitAplicationToolStripMenuItem"/> control.
     ''' </summary>
     ''' 
@@ -120,6 +156,25 @@ Partial Friend NotInheritable Class MainForm : Inherits Form
     End Sub
 
     ''' <summary>
+    ''' Handles the <see cref="ToolStripMenuItem.CheckedChanged"/> event 
+    ''' of the <see cref="MainForm.EnableDarkModeToolStripMenuItem"/> control.
+    ''' </summary>
+    ''' 
+    ''' <param name="sender">
+    ''' The source of the event.
+    ''' </param>
+    ''' 
+    ''' <param name="e">
+    ''' The <see cref="EventArgs"/> instance containing the event data.
+    ''' </param>
+    <DebuggerStepperBoundary>
+    Private Sub EnableDarkModeToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) _
+    Handles EnableDarkModeToolStripMenuItem.CheckedChanged
+
+        Me.enableDarkMode = Not Me.enableDarkMode
+    End Sub
+
+    ''' <summary>
     ''' Handles the <see cref="ToolStripButton.Click"/> event 
     ''' of the <see cref="MainForm.ToolStripButton_About"/> control.
     ''' </summary>
@@ -138,6 +193,59 @@ Partial Friend NotInheritable Class MainForm : Inherits Form
         Using aboutBox As New AboutForm()
             aboutBox.ShowDialog()
         End Using
+    End Sub
+
+    ''' <summary>
+    ''' Handles the <see cref="ChromiumWebBrowser.FrameLoadEnd"/> event 
+    ''' for all of the <see cref="ChromiumWebBrowser"/> controls.
+    ''' </summary>
+    ''' 
+    ''' <param name="sender">
+    ''' The source of the event.
+    ''' </param>
+    ''' 
+    ''' <param name="e">
+    ''' The <see cref="FrameLoadEndEventArgs"/> instance containing the event data.
+    ''' </param>
+    <DebuggerStepperBoundary>
+    Private Sub ChromiumWebBrowser_FrameLoadEnd(sender As Object, e As FrameLoadEndEventArgs) _
+        Handles ChromiumWebBrowser_MdEditor.FrameLoadEnd,
+                ChromiumWebBrowser_MdToHtml.FrameLoadEnd,
+                ChromiumWebBrowser_HtmlToMD.FrameLoadEnd,
+                ChromiumWebBrowser_MdGuide.FrameLoadEnd,
+                ChromiumWebBrowser_GitHubMdSyntax.FrameLoadEnd,
+                ChromiumWebBrowser_ChatGPT.FrameLoadEnd
+
+        ' ChromiumWebBrowser_TableToMd.FrameLoadEnd ' Applying this methodology on this webpage causes malfunction.
+
+        Dim browser As ChromiumWebBrowser = DirectCast(sender, ChromiumWebBrowser)
+        ' MsgBox(Me.enableDarkMode)
+        If e.Frame.IsMain AndAlso Me.enableDarkMode Then
+            browser.GetSourceAsync().ContinueWith(
+                Sub(taskHtml As Task(Of String))
+                    If browser.Tag Is Nothing Then
+                        browser.Tag = False
+                    End If
+                    Dim darkStyleIsLoaded As Boolean = DirectCast(browser.Tag, Boolean)
+                    If Not darkStyleIsLoaded Then
+                        Dim html As String = taskHtml.Result
+                        browser.LoadHtml(
+                            "<style>
+                              * {
+                                background-color: hsl(208, 5%, 15%) !important;
+                                color: hsl(208, 5%, 80%) !important;
+                              }
+
+                              textarea, input, select, table {
+                                border: 1px solid hsl(228, 5%, 30%);
+                                box-sizing: border-box !important;
+                              }
+                            </style> " & html, browser.Address, Encoding.UTF8, oneTimeUse:=True)
+                        browser.Tag = True
+                    End If
+                End Sub)
+        End If
+
     End Sub
 
 #End Region
