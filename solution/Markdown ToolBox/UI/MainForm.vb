@@ -8,10 +8,10 @@ Option Infer Off
 
 #Region " Imports "
 
-Imports System.Text
-
 Imports CefSharp
 Imports CefSharp.WinForms
+
+Imports ChromiumWebBrowserExtensions
 
 #End Region
 
@@ -108,8 +108,7 @@ Partial Friend NotInheritable Class MainForm : Inherits Form
         Dim currentTabPage As TabPage = tabcontrol.SelectedTab
         Dim browser As ChromiumWebBrowser = currentTabPage.Controls.OfType(Of ChromiumWebBrowser).Single()
 
-        browser.Tag = Nothing
-        browser.Load(browser.Address)
+        browser.Reload(ignoreCache:=True)
     End Sub
 
     ''' <summary>
@@ -168,10 +167,18 @@ Partial Friend NotInheritable Class MainForm : Inherits Form
     ''' The <see cref="EventArgs"/> instance containing the event data.
     ''' </param>
     <DebuggerStepperBoundary>
-    Private Sub EnableDarkModeToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) _
+    Private Async Sub EnableDarkModeToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) _
     Handles EnableDarkModeToolStripMenuItem.CheckedChanged
 
         Me.enableDarkMode = Not Me.enableDarkMode
+
+        Await Me.ChromiumWebBrowser_MdEditor.SetDarkModeAsync(Me.enableDarkMode)
+        Await Me.ChromiumWebBrowser_MdToHtml.SetDarkModeAsync(Me.enableDarkMode)
+        Await Me.ChromiumWebBrowser_HtmlToMD.SetDarkModeAsync(Me.enableDarkMode)
+        Await Me.ChromiumWebBrowser_TableToMd.SetDarkModeAsync(Me.enableDarkMode)
+        Await Me.ChromiumWebBrowser_MdGuide.SetDarkModeAsync(Me.enableDarkMode)
+        Await Me.ChromiumWebBrowser_GitHubMdSyntax.SetDarkModeAsync(Me.enableDarkMode)
+        Await Me.ChromiumWebBrowser_ChatGPT.SetDarkModeAsync(Me.enableDarkMode)
     End Sub
 
     ''' <summary>
@@ -196,6 +203,35 @@ Partial Friend NotInheritable Class MainForm : Inherits Form
     End Sub
 
     ''' <summary>
+    ''' Handles the <see cref="ChromiumWebBrowser.IsBrowserInitializedChanged"/> event 
+    ''' for all of the <see cref="ChromiumWebBrowser"/> controls.
+    ''' </summary>
+    ''' 
+    ''' <param name="sender">
+    ''' The source of the event.
+    ''' </param>
+    ''' 
+    ''' <param name="e">
+    ''' The <see cref="EventArgs"/> instance containing the event data.
+    ''' </param>
+    <DebuggerStepperBoundary>
+    Private Async Sub ChromiumWebBrowser_IsBrowserInitializedChanged(sender As Object, e As EventArgs) Handles _
+         ChromiumWebBrowser_MdEditor.IsBrowserInitializedChanged,
+         ChromiumWebBrowser_MdToHtml.IsBrowserInitializedChanged,
+         ChromiumWebBrowser_HtmlToMD.IsBrowserInitializedChanged,
+         ChromiumWebBrowser_TableToMd.IsBrowserInitializedChanged,
+         ChromiumWebBrowser_MdGuide.IsBrowserInitializedChanged,
+         ChromiumWebBrowser_GitHubMdSyntax.IsBrowserInitializedChanged,
+         ChromiumWebBrowser_ChatGPT.IsBrowserInitializedChanged
+
+        Dim browser As ChromiumWebBrowser = DirectCast(sender, ChromiumWebBrowser)
+        If browser.IsBrowserInitialized Then
+            Await browser.SetDarkModeAsync(Me.enableDarkMode)
+        End If
+
+    End Sub
+
+    ''' <summary>
     ''' Handles the <see cref="ChromiumWebBrowser.FrameLoadEnd"/> event 
     ''' for all of the <see cref="ChromiumWebBrowser"/> controls.
     ''' </summary>
@@ -208,42 +244,18 @@ Partial Friend NotInheritable Class MainForm : Inherits Form
     ''' The <see cref="FrameLoadEndEventArgs"/> instance containing the event data.
     ''' </param>
     <DebuggerStepperBoundary>
-    Private Sub ChromiumWebBrowser_FrameLoadEnd(sender As Object, e As FrameLoadEndEventArgs) _
+    Private Async Sub ChromiumWebBrowser_FrameLoadEnd(sender As Object, e As FrameLoadEndEventArgs) _
         Handles ChromiumWebBrowser_MdEditor.FrameLoadEnd,
                 ChromiumWebBrowser_MdToHtml.FrameLoadEnd,
                 ChromiumWebBrowser_HtmlToMD.FrameLoadEnd,
+                ChromiumWebBrowser_TableToMd.FrameLoadEnd,
                 ChromiumWebBrowser_MdGuide.FrameLoadEnd,
                 ChromiumWebBrowser_GitHubMdSyntax.FrameLoadEnd,
                 ChromiumWebBrowser_ChatGPT.FrameLoadEnd
 
-        ' ChromiumWebBrowser_TableToMd.FrameLoadEnd ' Applying this methodology on this webpage causes malfunction.
-
-        Dim browser As ChromiumWebBrowser = DirectCast(sender, ChromiumWebBrowser)
-        ' MsgBox(Me.enableDarkMode)
-        If e.Frame.IsMain AndAlso Me.enableDarkMode Then
-            browser.GetSourceAsync().ContinueWith(
-                Sub(taskHtml As Task(Of String))
-                    If browser.Tag Is Nothing Then
-                        browser.Tag = False
-                    End If
-                    Dim darkStyleIsLoaded As Boolean = DirectCast(browser.Tag, Boolean)
-                    If Not darkStyleIsLoaded Then
-                        Dim html As String = taskHtml.Result
-                        browser.LoadHtml(
-                            "<style>
-                              * {
-                                background-color: hsl(208, 5%, 15%) !important;
-                                color: hsl(208, 5%, 80%) !important;
-                              }
-
-                              textarea, input, select, table {
-                                border: 1px solid hsl(228, 5%, 30%);
-                                box-sizing: border-box !important;
-                              }
-                            </style> " & html, browser.Address, Encoding.UTF8, oneTimeUse:=True)
-                        browser.Tag = True
-                    End If
-                End Sub)
+        If e.Frame.IsMain Then
+            Dim browser As ChromiumWebBrowser = DirectCast(sender, ChromiumWebBrowser)
+            Await browser.SetDarkModeAsync(Me.enableDarkMode)
         End If
 
     End Sub
@@ -255,6 +267,7 @@ Partial Friend NotInheritable Class MainForm : Inherits Form
     ''' <summary>
     ''' Loads the URLs in the web browsers and assigns their corresponding request handlers.
     ''' </summary>
+    <DebuggerStepperBoundary>
     Private Async Sub InitializeBrowsers()
 
         ' Markdown Editor
@@ -330,6 +343,7 @@ Partial Friend NotInheritable Class MainForm : Inherits Form
         'Me.ChromiumWebBrowser_ChatGPT.RequestHandler =
         '    New RequestHandlerRestrictedToHostName(Urls.UrlChatGPT)
         Me.ChromiumWebBrowser_ChatGPT.LoadUrlAsync(Urls.UrlChatGPT)
+
 
 #Enable Warning BC42358 ' Because this call is not awaited, execution of the current method continues before the call is completed
 

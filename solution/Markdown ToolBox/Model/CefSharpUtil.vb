@@ -72,8 +72,8 @@ Friend Module CefSharpUtil
                 }
         End If
 
-        settings.CefCommandLineArgs.Add("--enable-features=WebContentsForceDark")
-        settings.CefCommandLineArgs.Add("enable-media-stream")
+        settings.CefCommandLineArgs.Add("enable-features", "WebContentsForceDark")
+        ' settings.CefCommandLineArgs.Add("enable-media-stream")
         ' settings.CefCommandLineArgs.Add("extensions-on-chrome-urls")
         ' settings.CefCommandLineArgs.Add("show-component-extension-options")
         ' settings.CefCommandLineArgs.Add("enable-extension-activity-logging")

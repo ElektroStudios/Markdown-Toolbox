@@ -77,7 +77,7 @@ Partial Class MainForm
         Me.ToolStripDropDownButton_File.Name = "ToolStripDropDownButton_File"
         Me.ToolStripDropDownButton_File.Size = New Size(54, 22)
         Me.ToolStripDropDownButton_File.Text = "File"
-        Me.ToolStripDropDownButton_File.ToolTipText = " "
+        Me.ToolStripDropDownButton_File.ToolTipText = " File"
         ' 
         ' ReloadCurrentWebpageToolStripMenuItem
         ' 
@@ -116,7 +116,7 @@ Partial Class MainForm
         Me.EnableSpellCheckToolStripMenuItem.CheckState = CheckState.Checked
         Me.EnableSpellCheckToolStripMenuItem.Image = My.Resources.Resources.SpellCheck
         Me.EnableSpellCheckToolStripMenuItem.Name = "EnableSpellCheckToolStripMenuItem"
-        Me.EnableSpellCheckToolStripMenuItem.Size = New Size(180, 22)
+        Me.EnableSpellCheckToolStripMenuItem.Size = New Size(215, 22)
         Me.EnableSpellCheckToolStripMenuItem.Text = "Enable Spell Check"
         Me.EnableSpellCheckToolStripMenuItem.ToolTipText = "Enable Spell Check"
         ' 
@@ -125,8 +125,8 @@ Partial Class MainForm
         Me.EnableDarkModeToolStripMenuItem.CheckOnClick = True
         Me.EnableDarkModeToolStripMenuItem.Image = My.Resources.Resources.DarkTheme
         Me.EnableDarkModeToolStripMenuItem.Name = "EnableDarkModeToolStripMenuItem"
-        Me.EnableDarkModeToolStripMenuItem.Size = New Size(180, 22)
-        Me.EnableDarkModeToolStripMenuItem.Text = "Enable Dark Mode"
+        Me.EnableDarkModeToolStripMenuItem.Size = New Size(215, 22)
+        Me.EnableDarkModeToolStripMenuItem.Text = "Enable Dark Mode Browser"
         Me.EnableDarkModeToolStripMenuItem.ToolTipText = "Enables dark mode" & vbCrLf & vbCrLf & "( you must realod the webpage to take effect )"
         ' 
         ' ToolStripSeparator2

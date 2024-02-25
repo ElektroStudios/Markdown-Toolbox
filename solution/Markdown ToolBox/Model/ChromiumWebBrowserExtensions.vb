@@ -11,6 +11,7 @@ Option Infer Off
 Imports System.Runtime.CompilerServices
 
 Imports CefSharp
+Imports CefSharp.DevTools
 Imports CefSharp.WinForms
 
 #End Region
@@ -68,6 +69,10 @@ Friend Module ChromiumWebBrowserExtensions
                                          preferenceName As String, value As Object,
                                          ByRef refErrorMsg As String) As Boolean
 
+        If browser Is Nothing Then
+            Throw New ArgumentNullException(paramName:=NameOf(browser))
+        End If
+
         If Not browser.IsBrowserInitialized Then
             Throw New InvalidOperationException("Browser has not been initialized.")
         End If
@@ -85,6 +90,35 @@ Friend Module ChromiumWebBrowserExtensions
 
         refErrorMsg = refLambdaErrorMsg
         Return success
+
+    End Function
+
+    ''' <summary>
+    ''' Ennable or disable dark mode for the source <see cref="ChromiumWebBrowser"/> object.
+    ''' </summary>
+    ''' 
+    ''' <param name="browser">
+    ''' The source <see cref="ChromiumWebBrowser"/> which to ennable or disable dark mode.
+    ''' </param>
+    ''' 
+    ''' <param name="enableDarkMode">
+    ''' <see langword="True"/> to enable dark mode, <see langword="False"/> otherwise.
+    ''' </param>
+    ''' 
+    ''' <returns>
+    ''' Returns a <see cref="DevToolsMethodResponse"/> object containing information about success or error.
+    ''' </returns>
+    <Extension>
+    <DebuggerStepThrough>
+    Public Async Function SetDarkModeAsync(browser As ChromiumWebBrowser, enableDarkMode As Boolean) As Task(Of DevToolsMethodResponse)
+
+        If browser Is Nothing Then
+            Throw New ArgumentNullException(paramName:=NameOf(browser))
+        End If
+
+        Return If(browser.IsBrowserInitialized,
+            Await browser.GetDevToolsClient().Emulation.SetAutoDarkModeOverrideAsync(enableDarkMode),
+            Nothing)
 
     End Function
 
