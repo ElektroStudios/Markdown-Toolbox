@@ -24,7 +24,7 @@ The web services to which this desktop application provides direct access are:
 
 ## 🖼️ Screenshots
 
-![screenshot](/images/screenshot.png)
+![screenshot](/Images/screenshot.png)
 
 ## 📝 Requirements
 
