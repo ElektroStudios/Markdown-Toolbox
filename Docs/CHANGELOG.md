@@ -1,4 +1,4 @@
-# Markdown ToolBox Change Log 📋
+﻿# Markdown ToolBox Change Log 📋
 
 ## v1.4 *(current)* 🆕
 #### 🌟 Improvements:
