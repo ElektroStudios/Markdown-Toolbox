@@ -2,7 +2,7 @@
 # CUSTOMIZABLE TEMPLATE REPOSITORY VARIABLES
 # 
 env:
-  SOLUTION_NAME: "Markdown ToolBox"
+  SOLUTION_NAME: "Markdown Toolbox"
   SOLUTION_EXT:  "sln"
   SONAR_PROJECT_KEY:  "ElektroStudios_Markdown-Toolbox"
   SONAR_ORGANIZATION: "elektrostudios"
