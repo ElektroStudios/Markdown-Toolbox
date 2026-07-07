@@ -4,7 +4,7 @@
 env:
   SOLUTION_NAME: "Markdown ToolBox"
   SOLUTION_EXT:  "sln"
-  SONAR_PROJECT_KEY:  "ElektroStudios_Markdown-ToolBox"
+  SONAR_PROJECT_KEY:  "ElektroStudios_Markdown-Toolbox"
   SONAR_ORGANIZATION: "elektrostudios"
 # ------------------------------------------
 
